@@ -1,3 +1,9 @@
-# Premier-League-2017-22
-Statistical Analysis of the Premier League seasons (2017-22) using SQL
-The first task is to create an aggregate table 
+# Premier-League-2017-22 Statistical Analysis
+
+In this analysis we will explore the previous 5 seasons (2017-18 - 2021-22) of the English Premier League. 
+
+Dataset source: [Statistical Analysis](https://www.football-data.co.uk/englandm.php)
+
+The goal of this analysis is to manipulate the data using SQL and answer interesting questions.
+
+1. Creation of a combined table which includes all the matches with their relevant statistics from all 5 seasons.
