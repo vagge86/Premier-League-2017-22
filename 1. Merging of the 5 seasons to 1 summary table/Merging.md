@@ -14,7 +14,7 @@ Additionally we will create an additional column which shows the season each mat
     
 The same query is being repeated 5 times one for each dataset only making the necessary changes in the table name and the desired season name.
 
-**Merging of the 5 files in one**
+**Merging of the 5 files in one by selecting the columns we need**
 
 ```
 create table Summary_2017_2022
