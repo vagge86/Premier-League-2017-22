@@ -1,0 +1,14 @@
+**Preparation Overview**
+
+The preparation will be conducted in two steps:
+
+1. As we have 5 csv files which contain data for the 380 matches of each of 5 seasons the first step is to combine selected data from these tables into one combined table which will contain data from 380*5=1900 matches all in one table.
+To aid us in our future analysis a separate column will be added which will indicate which season did each match take place and another column as primary key at the first column of the new table.
+
+2. As a second step it is necessary to summarize the data of the new combined table in one new cumulative table which will sum up all the stats per team. One problem is that as teams play both home and away it is not possible to create one cumulative table right away, so it makes sense to create first two cumulative tables one for teams which played at home and another for teams which played away from home.
+Then the two tables will be combined to one big cumulative table which will summarize all the data of each team both home and away.
+The columns that will be added for future use are the following:
+-Position (which will rank the teams on the basis of points won)
+-Matches (how many matches each team played)
+-Goal Difference (Between goals scored and goals conceded)
+-Cards Received/Conceded (Summary of cards Received/Conceded - As Red and Yellow cards don't have the same weight in the game a Card Point system will be applied: Yellow cards will worth 1 point and Red Cards 2 points)
