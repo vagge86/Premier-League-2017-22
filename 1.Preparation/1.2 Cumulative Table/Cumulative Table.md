@@ -6,98 +6,89 @@ b. Merging and summarizing those two tables
 
 **For the calculation of the cards the following Card Points system has been followed: Each Yellow card is worth one Card Point and each Red Card is worth 2 Card Points. A column with the mathes played will be added with the following method: First a separate table will be created counting all the matches played by each team at home and another one for matches played away. Then each one will be Joined to the corresponding home and away cumulative table.
 ```
-#Creation of aggregate table for the most important statistics for the home teams with descriptive aliases in each new column
+#Creation of aggregate table for the most important statistics for the home teams (both for and against) with descriptive aliases in each new column.
+#All stats are marked as H to indicate that they are gathered from the matches of the home matches of each team.
 
-create table HomeTeams
-select HomeTeam,
+Create table HomeTable
+SELECT HomeTeam,
 sum(HomePoints) as HomePoints, 
 sum(FTHG) as HGoalsScored,
 sum(FTAG) as HGoalsConceded, 
-sum(HS) as HomeShots, 
-sum(HST) as HomeOnTarget, 
-sum(HF) as HomeFouls,
-sum(HC) as HomeCorners,
-sum(HY+(2*HR)) as HomeCards
-From Summary_2017_2022
-group by HomeTeam
-order by sum(HomePoints) desc;
-
-#Creation of new table to calculate the number of matches of the Home Teams
-Create table HomeMatches
-SELECT HomeTeam,Count(HomeTeam) as Home_matches
-from Summary_2017_2022
-Group by HomeTeam;
-
-#Joining the Home Teams table with the above created table to add a column with the matches played by each team
-create table HomeTeamsTable
-SELECT h.*, m.Home_matches
-from hometeams as h
-left join homematches as m
-on m.HomeTeam=h.HomeTeam;
-ALTER TABLE HomeTeamsTable
-MODIFY Home_matches int(10)
-AFTER HomeTeam;
+SUM(HS) as HShotsFor, 
+sum(summary_2017_2022.AS) as HShotsAgainst, 
+SUM(HST) as HOnTargetFor, 
+SUM(AST) as HOnTargetAgainst,
+sum(HF) as HFoulsCommited,
+sum(AF) as HFoulsSuffered,
+SUM(HC) as HCornersFor,
+SUM(AC) as HCornersAgainst,
+SUM(HY+(2*HR)) as HCardsTeam,
+SUM(AY+(2*AR)) as HCardsOpp,
+Count(HomeTeam) as Hmatches
+FROM summary_2017_2022
+GROUP BY HomeTeam
+order by homepoints DESC;
 
 #Creation of aggregate table for the most important statistics for the away teams with descriptive aliases in each new column
-create table AwayTeams
-select AwayTeam, 
+#All stats are marked as A at the beginning of their alias names to indicate that they are gathered from the matches of the home matches of each team.
+
+create table awaytable
+SELECT AwayTeam, 
 sum(AwayPoints) as AwayPoints, 
-sum(FTHG) as AGoalsConceded, sum(FTAG) as AGoalsScored, 
-sum(Summary_2017_2022.AS) as AwayShots, SUM(AST) as AwayOnTarget, 
-sum(AF) as AwayFouls,
-sum(AC) as AwayCorners,
-sum(AY+(2*AR)) as AwayCards
-From Summary_2017_2022
-group by AwayTeam
-order by sum(AwayPoints) desc;
+sum(FTHG) as AGoalsConceded,
+sum(FTAG) as AGoalsScored, 
+SUM(HS) as AShotsAgainst, 
+sum(summary_2017_2022.AS) as AShotsFor, 
+SUM(HST) as AOnTargetAgainst, 
+SUM(AST) as AOnTargetFor,
+sum(HF) as AFoulsSuffered,
+sum(AF) as AFoulsCommited,
+SUM(HC) as ACornersAgainst,
+SUM(AC) as ACornersFor,
+SUM(HY+(2*HR)) as ACardsOpp,
+SUM(AY+(2*AR)) as ACardsTeam,
+Count(HomeTeam) as Amatches
+FROM summary_2017_2022
+GROUP BY AwayTeam
+order by AwayPoints DESC;
 
-#Creation of new table to calculate the number of matches of the Away Teams
-Create table awaymatches
-SELECT AwayTeam,Count(AwayTeam) as Away_matches
-from Summary_2017_2022
-Group by AwayTeam;
-
-#Joining the Away Teams table with the above created table to add a column with the matches played by each team
-create table AwayTeamsTable
-SELECT a.*, m.Away_matches
-from awayteams as a
-left join awaymatches as m
-on m.AwayTeam=a.AwayTeam;
-ALTER TABLE AwayTeamsTable
-MODIFY Away_matches int(10)
-AFTER AwayTeam;
-```
-So now we have two cumulativce wide tables one for the home teams: HomeTeamsTable and away teams:AwayTeamsTable
-Next step is to create a combined wide table by using the JOIN command on the match of the same team in both tables.
-
-```
-#Merge of the two tables into one
-create table Wide_table
+#Merging of the two tables into one big table with data for home and matches separated.
+create table Wide_Table
 SELECT *
-from HomeTeamsTable as h
-left join AwayTeamsTable as a
+from hometable as h
+left join awaytable as a
 on HomeTeam=AwayTeam;
+
 ```
 
 The final Cumulative table will be created by creating a table which will add the home and away stats of each team, adding an additional column for the goal difference and will rank the teams on the basis of points won over the last 5 years.
 
 ```
 #creation of the final standings by aggregating stats for each team from both home and away matches
+
 create table Cumulative_Table
 select 
 ROW_Number() OVER(ORDER BY((HomePoints + AwayPoints)) desc) AS Position,
-HomeTeam, 
-(Home_matches+Away_matches) as Matches,
+HomeTeam as Team, 
 (HomePoints + AwayPoints) as Points,
 (HGoalsScored + AGoalsScored) as Goals_Scored,
 (HGoalsConceded + AGoalsConceded) as Goals_Conceded,
 ((HGoalsScored + AGoalsScored) - (HGoalsConceded + AGoalsConceded)) as Goal_Difference,
-(HomeShots + AwayShots) as Shots,
-(HomeOnTarget + AwayOnTarget) as Shots_On_Target,
-(HomeFouls + AwayFouls) as Fouls,
-(HomeCorners + AwayCorners) as Corners,
-(HomeCards + AwayCards) as Cards
-from Wide_table
+(HShotsFor + AShotsFor) as Shots_For,
+(HShotsAgainst + AShotsAgainst) as Shots_Against,
+(HOnTargetFor + AOnTargetFor) as Shots_On_Target_For,
+(HOnTargetAgainst + AOnTargetAgainst) as Shots_On_Target_Against,
+(HFoulsCommited + AFoulsCommited) as Fouls_Commited,
+(HFoulsSuffered + AFoulsSuffered) as Fouls_Suffered,
+(HCornersFor + ACornersFor) as Corners_For,
+(HCornersAgainst + ACornersAgainst) as Corners_Against,
+(HCardsTeam + ACardsTeam) as Team_Cards,
+(HCardsOpp + ACardsOpp) as Opposition_Cards,
+(Hmatches + Amatches) as No_Matches
+from Wide_Table
 order by Points desc;
+Alter table cumulative_table
+Modify No_Matches int(10)
+AFTER Team;
 ```
-[This is our final Cumulative table:]![image](https://user-images.githubusercontent.com/69303154/206860213-cad96bb4-3249-42b4-9fb9-62eb8ab2de7e.png)
+[This is our final Cumulative table with plenty of data to work on:]![image](![image](https://user-images.githubusercontent.com/69303154/206866964-7b2a2398-d581-440e-ab2f-4fd7b7cf1938.png))
