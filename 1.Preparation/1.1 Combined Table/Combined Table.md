@@ -5,7 +5,7 @@ In this part I will merge the 5 data sheets to 1 combined table and I will add t
 At first we will create an additional column which shows the season each match took place.
 
 **Addition of a "Season" Column and placement after the "Date" Column**
-
+```ruby
     ALTER table season20212022
     ADD Season varchar(255);
     update season20212022
@@ -13,12 +13,13 @@ At first we will create an additional column which shows the season each match t
     ALTER TABLE season20212022
     MODIFY Season varchar(255)
     AFTER Date;
+    ```
     
 The same query is being repeated 5 times one for each dataset only making the necessary changes in the table name and the desired season name.
 
 **Merging of the 5 files in one by selecting the columns we need**
 
-```
+```ruby
 create table Summary_2017_2022
 
 select season20212022.Date AS match_date,Season, HomeTeam, AwayTeam, FTHG, FTAG, FTR, HTHG, HTAG, HTR, Referee, HS, season20212022.AS, HST, AST, HF, AF, HC, AC, HY, AY, HR, AR, B365H, B365D, B365A
