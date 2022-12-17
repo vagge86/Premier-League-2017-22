@@ -40,7 +40,7 @@ from season20172018;
 
 The next issue of our new dataset is that it will be helpful to add a new column: match_id as primary key and then sort the matches by date.
 
-```
+```ruby
 ALTER TABLE Summary_2017_2022 ADD match_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;
 SELECT *
 from Summary_2017_2022
@@ -49,7 +49,7 @@ ORDER BY STR_TO_DATE(match_date, '%d/%m/%Y');
 
 Next setp is that the primary key column should be the first column
 
-```
+```ruby
 ALTER TABLE Summary_2017_2022
 MODIFY match_id INT(10)
 FIRST;
@@ -58,7 +58,7 @@ FIRST;
 We will also need a column for the points won by each team (3 if the team wins, 1 if the team draws and 0 if it loses).
 For our analysis we will need a separate column for the home team and another one for the away team.
 
-```
+```ruby
 #Addition of HomePoints column as Integer for the points won by the Home Team 
 ALTER TABLE Summary_2017_2022
 ADD HomePoints INT(10);
