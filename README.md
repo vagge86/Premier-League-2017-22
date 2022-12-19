@@ -10,3 +10,5 @@ Each dataset consists of results and statistics from all individual matches from
 [1. Merge all the datasets from the last five seasons to one (consisting of 1900 matches) and adding new columns necessary for future analysis.](https://github.com/vasilisangelidis/Premier-League-2017-22-in-progress-/tree/main/1.Data%20Manipulation/1.1%20Combined%20Table%20Creation)
 
 [2. Create a summary table aggregating all the stats from all seasons.](https://github.com/vasilisangelidis/Premier-League-2017-22-in-progress-/tree/main/1.Data%20Manipulation/1.2%20Cumulative%20Table%20Creation)
+
+:dart: 2nd Analysis Goal: Measure the accuracy of bookmaker odds
