@@ -1,10 +1,17 @@
-**In this section a wide cumulative table will be created**
+## <ins>In this section a wide cumulative table will be created:</ins>
 
-In order to conduct this part of the analysis the following steps will be followed:
+:zap: In order to conduct this part of the analysis the following steps will be followed:
+
 a. Creation of two tables HomeTeams and AwayTeams which will aggregate the stats and points for each team separately.
-b. Merging and summarizing those two tables 
 
-**For the calculation of the cards the following Card Points system has been followed: Each Yellow card is worth one Card Point and each Red Card is worth 2 Card Points. A column with the mathes played will be added with the following method: First a separate table will be created counting all the matches played by each team at home and another one for matches played away. Then each one will be Joined to the corresponding home and away cumulative table.
+b. Merging the two above tables in one wide table with two parts: 
+- One for the aggregated stats for each team only for their home matches on the left side and the same for their away matches on the right side.
+ 
+c. Merging the stats from home and away matches to one cumulative table.
+
+💡 For the calculation of the cards the following Card Points system has been followed: Each Yellow card is worth one Card Point and each Red Card is worth 2 Card Points. 
+
+💡 A column with the mathes played will be added with the following method: First a separate table will be created counting all the matches played by each team at home and another one for matches played away. Then each one will be Joined to the corresponding home and away cumulative table.
 ```ruby
 #Creation of aggregate table for the most important statistics for the home teams (both for and against) with descriptive aliases in each new column.
 #All stats are marked as H to indicate that they are gathered from the matches of the home matches of each team.
@@ -61,7 +68,9 @@ on HomeTeam=AwayTeam;
 
 ```
 
-The final Cumulative table will be created by creating a table which will add the home and away stats of each team, adding an additional column for the goal difference and will rank the teams on the basis of points won over the last 5 years.
+💡The wide table is temporary and used mainly to enable us aggregate the stats for each team.
+
+💡The final Cumulative table will be created by creating a table which will add the home and away stats of each team, adding an additional column for the goal difference and will rank the teams on the basis of points won over the last 5 years.
 
 ```ruby
 #creation of the final standings by aggregating stats for each team from both home and away matches
@@ -91,4 +100,4 @@ Alter table cumulative_table
 Modify No_Matches int(10)
 AFTER Team;
 ```
-This is our final Cumulative table with plenty of data to work on:![image](https://user-images.githubusercontent.com/69303154/208435131-7cadd9fb-947f-419e-8f7a-d83a3c703407.png)
+💬 This is our final Cumulative table with plenty of data to work on:![image](https://user-images.githubusercontent.com/69303154/208435131-7cadd9fb-947f-419e-8f7a-d83a3c703407.png)
