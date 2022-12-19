@@ -1,8 +1,8 @@
-**Merging of the 5 seasons to 1 summary table and preparation of the final table for our analysis**
+### <ins>Merging of the 5 seasons to 1 summary table</ins>
 
-In this part I will merge the 5 data sheets to 1 combined table and I will add the necessary columns that will help to conduct the analysis afterwards.
+:zap: In this part I will merge the 5 data sheets to 1 combined table and I will add the necessary columns that will help to conduct the analysis afterwards.
 
-At first we will create an additional column which shows the season each match took place.
+-At first we will create an additional column which shows the season each match took place:
 
 **Addition of a "Season" Column and placement after the "Date" Column**
 ```ruby
@@ -55,7 +55,7 @@ MODIFY match_id INT(10)
 FIRST;
 ```
 
-We will also need a column for the points won by each team (3 if the team wins, 1 if the team draws and 0 if it loses).
+:zap: We will also need a column for the points won by each team (3 if the team wins, 1 if the team draws and 0 if it loses).
 For our analysis we will need a separate column for the home team and another one for the away team.
 
 ```ruby
