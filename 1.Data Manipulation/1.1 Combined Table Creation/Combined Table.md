@@ -2,7 +2,7 @@
 
 :zap: In this part I will merge the 5 data sheets to 1 combined table and I will add the necessary columns that will help to conduct the analysis afterwards.
 
--At first we will create an additional column which shows the season each match took place:
+- At first we will create an additional column which shows the season each match took place:
 
 **Addition of a "Season" Column and placement after the "Date" Column**
 ```ruby
@@ -38,7 +38,7 @@ select season20172018.Date AS match_date,Season, HomeTeam, AwayTeam, FTHG, FTAG,
 from season20172018;
 ```
 
-The next issue of our new dataset is that it will be helpful to add a new column: match_id as primary key and then sort the matches by date.
+- The next issue of our new dataset is that it will be helpful to add a new column: match_id as primary key and then sort the matches by date.
 
 ```ruby
 ALTER TABLE Summary_2017_2022 ADD match_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;
@@ -47,7 +47,7 @@ from Summary_2017_2022
 ORDER BY STR_TO_DATE(match_date, '%d/%m/%Y');
 ```
 
-Next setp is that the primary key column should be the first column
+- Next setp is that the primary key column should be the first column
 
 ```ruby
 ALTER TABLE Summary_2017_2022
