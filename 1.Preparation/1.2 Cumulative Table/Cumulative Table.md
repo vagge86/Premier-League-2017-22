@@ -91,4 +91,4 @@ Alter table cumulative_table
 Modify No_Matches int(10)
 AFTER Team;
 ```
-[This is our final Cumulative table with plenty of data to work on:]![image](![image](https://user-images.githubusercontent.com/69303154/206866964-7b2a2398-d581-440e-ab2f-4fd7b7cf1938.png))
+This is our final Cumulative table with plenty of data to work on:![image](https://user-images.githubusercontent.com/69303154/208435131-7cadd9fb-947f-419e-8f7a-d83a3c703407.png)
