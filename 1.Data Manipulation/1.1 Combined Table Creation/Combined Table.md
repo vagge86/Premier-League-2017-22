@@ -80,5 +80,5 @@ SET AwayPoints = CASE
   ELSE 3
 END;
 ```
-Our final combined table containing all 1900 matches across 5 seasons looks like this:
+:bulb: Our final combined table containing all 1900 matches across 5 seasons looks like this:
 ![image](https://user-images.githubusercontent.com/69303154/206854923-8cb6a770-0a9c-4437-8105-03ccf902982b.png)
