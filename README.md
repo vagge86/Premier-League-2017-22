@@ -5,7 +5,7 @@ Each dataset consists of results and statistics from all individual matches from
 
 :information_source: Dataset source: https://www.football-data.co.uk/englandm.php
 
-:dart: Goals of the Analysis:
+:dart: 1st Analysis Goal: Data manipulation
 
 [1. The first goal is to merge all the datasets from the last five seasons to one (consisting of 1900 matches) and adding new columns necessary for our future analysis.](https://github.com/vasilisangelidis/Premier-League-2017-22-in-progress-/tree/main/1.Data%20Manipulation/1.1%20Combined%20Table%20Creation)
 
