@@ -4,6 +4,7 @@
 Each dataset consists of results and statistics from all individual matches from one season (380 matches). 
 
 :information_source: Dataset source: https://www.football-data.co.uk/englandm.php
+
 ❗ The analysis is carried out with MySQL.
 
 :dart: 1st Goal: Data manipulation using SQL:
