@@ -4,8 +4,9 @@
 Each dataset consists of results and statistics from all individual matches from one season (380 matches). 
 
 :information_source: Dataset source: https://www.football-data.co.uk/englandm.php
+❗ The analysis is carried out with MySQL.
 
-:dart: 1st Goal: Data manipulation (Not Relevant for Analysis reasons):
+:dart: 1st Goal: Data manipulation using SQL:
 
 [1. Merging of all the datasets to one (consisting of 1900 matches) and addition of new columns.](https://github.com/vasilisangelidis/Premier-League-2017-22-in-progress-/tree/main/1.Data%20Manipulation/1.1%20Combined%20Table%20Creation)
 
