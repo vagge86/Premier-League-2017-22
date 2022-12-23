@@ -5,10 +5,12 @@ Each dataset consists of results and statistics from all individual matches from
 
 :information_source: Dataset source: https://www.football-data.co.uk/englandm.php
 
-:dart: 1st Analysis Goal: Data manipulation
+:dart: 1st Analysis Goal: Data manipulation:
 
-[1. Merge all the datasets from the last five seasons to one (consisting of 1900 matches) and adding new columns necessary for future analysis.](https://github.com/vasilisangelidis/Premier-League-2017-22-in-progress-/tree/main/1.Data%20Manipulation/1.1%20Combined%20Table%20Creation)
+[1. Merging of all the datasets to one (consisting of 1900 matches) and addition of new columns.](https://github.com/vasilisangelidis/Premier-League-2017-22-in-progress-/tree/main/1.Data%20Manipulation/1.1%20Combined%20Table%20Creation)
 
-[2. Create a summary table aggregating all the stats from all seasons.](https://github.com/vasilisangelidis/Premier-League-2017-22-in-progress-/tree/main/1.Data%20Manipulation/1.2%20Cumulative%20Table%20Creation)
+[2. Creation of summary table with aggregation of all the stats from all seasons.](https://github.com/vasilisangelidis/Premier-League-2017-22-in-progress-/tree/main/1.Data%20Manipulation/1.2%20Cumulative%20Table%20Creation)
 
-:dart: 2nd Analysis Goal: Measure the accuracy of bookmaker odds
+:dart: 2nd Analysis Goal: [Measure the accuracy of bookmaker odds](https://github.com/vasilisangelidis/Premier-League-2017-22-in-progress-/blob/main/2.%20Bookmaker%20Accuracy%20Measurement.md)
+
+:dart: 3nd Analysis Goal: Extra Questions:
